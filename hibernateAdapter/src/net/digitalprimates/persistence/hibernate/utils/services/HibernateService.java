@@ -18,6 +18,7 @@
 
 package net.digitalprimates.persistence.hibernate.utils.services;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -106,7 +107,7 @@ public class HibernateService
     }
 
 
-    public Object load(Class cls, String id)
+    public Object load(Class cls, Serializable id)
     {
         Session session = null;
          Object result;
