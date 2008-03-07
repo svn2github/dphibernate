@@ -69,8 +69,10 @@ public class HibernateSerializer implements ISerializer
 
 	private Object translate(Object obj)
 	{
+		if( obj == null ){ return null;}
+		
 		Object result = null;
-
+		
 		Object key = getCacheKey(obj);
 
 		if (cache.containsKey(key))
@@ -256,7 +258,7 @@ public class HibernateSerializer implements ISerializer
 		if (obj instanceof HibernateProxy)
 		{
 			return ((HibernateProxy) obj).getHibernateLazyInitializer().getPersistentClass().getName().toString() + "_" + ((HibernateProxy) obj).getHibernateLazyInitializer().getIdentifier().toString();
-		} else if (obj instanceof AbstractPersistentCollection)
+		} else if (  obj instanceof AbstractPersistentCollection && !((AbstractPersistentCollection)obj).wasInitialized()  )
 		{
 			return ((AbstractPersistentCollection) obj).getRole() + "_" + ((AbstractPersistentCollection) obj).getKey().hashCode();
 		}
