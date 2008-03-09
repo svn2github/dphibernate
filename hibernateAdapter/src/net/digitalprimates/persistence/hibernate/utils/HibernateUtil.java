@@ -63,7 +63,18 @@ public class HibernateUtil
     
     public static Session getCurrentSession() throws HibernateException
     {
-        Session s = threadSession.get();
+    	return getCurrentSession(false);
+    }
+    
+    
+    public static Session getCurrentSession(Boolean forceNewConnection) throws HibernateException
+    {
+    	Session s = null;
+    	if( !forceNewConnection )
+    	{
+    		s = threadSession.get();
+    	}
+    	
         // Open a new Session, if this Thread has none yet
         if (s == null)
         {

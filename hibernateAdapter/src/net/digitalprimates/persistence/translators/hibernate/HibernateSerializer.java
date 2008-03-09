@@ -353,8 +353,9 @@ public class HibernateSerializer implements ISerializer
 		String sql = pkSelect.toStatementString();
 
 		// int size = absPersister.getSize(collection.getKey(), eventSession);
-		Query q2 = ((SessionImpl) session).createQuery(sql).setParameter(0, collection.getKey());
-		return q2.list();
+		Query q2 = ((SessionImpl) session).createSQLQuery(sql).setParameter(0, collection.getKey());
+		List results = q2.list();
+		return results;
 	}
 
 }
