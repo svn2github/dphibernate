@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="net.digitalprimates.persistence.hibernate.tests.manyToMany">
-  <class name="M2MPerson" table="m2mPerson" >
+<hibernate-mapping package="net.digitalprimates.persistence.hibernate.tests.oneToMany">
+  <class name="O2MPerson" table="o2mPerson" >
   
 	<id name="id" type="string">
     	<column name="id" length="40" />
@@ -18,12 +18,9 @@
   		<column name="lastName"></column>
   	</property>
 
-
-	<set name="addresses" table="m2mPersonAddress" cascade="all">
-        <key column="personId"/>
-        <many-to-many 
-        	column="addressId" 
-        	class="M2MAddress" />
+	<set name="addresses" cascade="all">
+        <key column="person"/>
+        <one-to-many class="O2MAddress" />
     </set>
 
   </class>

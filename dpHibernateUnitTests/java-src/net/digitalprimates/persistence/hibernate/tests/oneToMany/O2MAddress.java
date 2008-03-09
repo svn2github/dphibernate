@@ -1,9 +1,9 @@
-package net.digitalprimates.persistence.hibernate.tests.manyToMany;
+package net.digitalprimates.persistence.hibernate.tests.oneToMany;
 
 import java.util.Set;
 
 
-public class M2MAddress
+public class O2MAddress
 {
     public String id;// = UUID.randomUUID().toString();
     public String address1;
@@ -11,18 +11,18 @@ public class M2MAddress
     public String city;
     public String state;
     public Integer zip;
-    public Set persons;
+    public O2MPerson person;
     
     
-    public Set getPersons()
+    public O2MPerson getPerson()
     {
-        return persons;
+        return person;
     }
     
 
-    public void setPersons(Set users)
+    public void setPerson(O2MPerson user)
     {
-        this.persons = users;
+        this.person = user;
     }
     
 

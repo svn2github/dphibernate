@@ -1,17 +1,16 @@
-package net.digitalprimates.persistence.hibernate.tests.manyToMany;
+package net.digitalprimates.persistence.hibernate.tests.oneToMany;
 
 import java.util.Set;
 import java.util.UUID;
-
+import java.util.Collection;
 
 @SuppressWarnings("unchecked")
-public class M2MPerson
+public class O2MPerson
 {
     public String id = UUID.randomUUID().toString();
     public String firstName;
     public String lastName;
-    public M2MUserConnectInfo connectInfo;
-    public Set addresses;
+    public Collection addresses;
 
     
     
@@ -51,25 +50,13 @@ public class M2MPerson
     }
     
 
-    public M2MUserConnectInfo getConnectInfo()
-    {
-        return connectInfo;
-    }
-    
-
-    public void setConnectInfo(M2MUserConnectInfo connectInfo)
-    {
-        this.connectInfo = connectInfo;
-    }
-    
-
-    public Set getAddresses()
+    public Collection getAddresses()
     {
         return addresses;
     }
     
 
-    public void setAddresses(Set addresses)
+    public void setAddresses(Collection addresses)
     {
         this.addresses = addresses;
     }

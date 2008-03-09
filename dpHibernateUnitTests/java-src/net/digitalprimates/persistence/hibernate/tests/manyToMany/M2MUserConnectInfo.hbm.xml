@@ -4,7 +4,7 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 	
 <hibernate-mapping package="net.digitalprimates.persistence.hibernate.tests.manyToMany">
-  <class name="M2MUserConnectInfo" table="UserConnectInfo">
+  <class name="M2MUserConnectInfo" table="m2mUserConnectInfo">
   	<id name="id" type="string">
     	<column name="id" length="40" />
         <generator class="uuid"></generator>
