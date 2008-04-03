@@ -1,6 +1,6 @@
 <project name="javaHibernate" default="jar">
 
-    <property name="version" value="1.0.1"/>
+    <property name="version" value="1.0.3"/>
     <property name="sourcedir" value="${basedir}/src"/>
     <property name="bindir" value="${basedir}/bin"/>
     <property name="generateddir" value="${basedir}/build"/>
@@ -31,7 +31,7 @@
 	</target>
 
 	<target name="clean">
-        <delete dir="${generateddir}"/>
+        <!--delete dir="${generateddir}"/-->
         <mkdir dir="${generateddir}"/>
     </target>
 	

@@ -23,6 +23,7 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -116,12 +117,19 @@ public class HibernateSerializer implements ISerializer
 
 	private boolean isSimple(Object obj)
 	{
-		return ((obj instanceof String) || (obj instanceof Boolean) || (obj instanceof Integer) || (obj instanceof Float) || (obj instanceof Double));
+		return ((obj instanceof String) 
+				|| (obj instanceof Boolean) 
+				|| (obj instanceof Integer) 
+				|| (obj instanceof Float) 
+				|| (obj instanceof Date) 
+				|| (obj instanceof Double));
 	}
 
 
 	private Object writeBean(Object obj, Object result, Object key)
 	{
+		String propName;
+		
 		try
 		{
 			ASObject asObject = new ASObject();// new ExternalASObject();
@@ -141,7 +149,7 @@ public class HibernateSerializer implements ISerializer
 			BeanInfo info = Introspector.getBeanInfo(obj.getClass());
 			for (PropertyDescriptor pd : info.getPropertyDescriptors())
 			{
-				String propName = pd.getName();
+				propName = pd.getName(); System.out.println("propName=" +propName);
 				if (!"class".equals(propName) && !"annotations".equals(propName) && !"hibernateLazyInitializer".equals(propName))
 				{
 					Object val = pd.getReadMethod().invoke(obj, null);

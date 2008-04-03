@@ -18,6 +18,8 @@
 
 package net.digitalprimates.persistence.hibernate.utils;
 
+import java.sql.SQLException;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -89,7 +91,11 @@ public class HibernateUtil
     {
         Session s = threadSession.get();
         threadSession.set(null);
-        if (s != null) s.close();
+        try
+        {
+        	if (s != null && !s.connection().isClosed()) s.close();
+        }
+        catch( SQLException ex){}
     }
 
 

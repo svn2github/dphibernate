@@ -174,7 +174,6 @@ public class HibernateAdapter extends JavaAdapter
 
 			// invoke the user class.method()
 			results = super.invoke(remotingMessage);
-			System.out.println("foo");
 
 			// serialize the result out
 			try
