@@ -61,6 +61,7 @@ public class SerializeManyToMany
         
         u1 = (M2MPerson)new HibernateService().merge(u1);
         
+        HibernateUtil.getCurrentSession().flush();
         HibernateUtil.commitTransaction();
         HibernateUtil.closeSession();
     }

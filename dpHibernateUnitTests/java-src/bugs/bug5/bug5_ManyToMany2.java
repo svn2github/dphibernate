@@ -1,6 +1,7 @@
 package bugs.bug5;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import net.digitalprimates.persistence.hibernate.HibernateAdapter;
 import net.digitalprimates.persistence.hibernate.tests.oneToMany.O2MPerson;
 import net.digitalprimates.persistence.hibernate.utils.HibernateUtil;
 import net.digitalprimates.persistence.hibernate.utils.services.HibernateService;
@@ -20,6 +22,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import flex.messaging.io.amf.ASObject;
+import flex.messaging.messages.RemotingMessage;
+import flex.messaging.services.messaging.RemoteMessageClient;
 
 import bugs.bug5.domain.Menu;
 import bugs.bug5.domain.Permission;
@@ -125,5 +129,32 @@ public class bug5_ManyToMany2
 	        // open session
 	    	HibernateUtil.closeSession();
     	}
+	}
+	
+	
+	@Test
+	public void testSaveMenuPermissionRoles()
+	{
+		// open session
+		HibernateUtil.getCurrentSession(true);
+		
+		try
+		{
+			Menu menu = (Menu)new HibernateService().load(Menu.class, menu1id);
+			
+			Assert.assertNotNull(menu);
+			
+			// touch permissions so it will be loaded and we can check roles lazy property.
+			((Permission)menu.getPermissions().toArray()[0]).getName();
+			
+			String sessionFactoryClazz = "net.digitalprimates.persistence.hibernate.utils.HibernateUtil";
+			String method = "getCurrentSession";
+			ASObject fMenu = (ASObject) SerializationFactory.getSerializer(SerializationFactory.HIBERNATESERIALIZER).translate(sessionFactoryClazz, method, menu);
+
+			
+		}finally{
+			// open session
+			HibernateUtil.closeSession();
+		}
 	}
 }
